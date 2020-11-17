@@ -18,7 +18,7 @@ import common.Researcher;
 public class LoadDatabase {
 	
 	private final static String name = "postgres";
-	private final static String password = "Antoniomaria2";
+	private final static String password = "";
 	private final static String tablenameresearcher = "researcher";
 	private final static String tablenameinstitution = "institution";
 	private final static String tablenameresearch = "research";
