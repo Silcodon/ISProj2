@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import common.Institution;
 import common.Research;
 import common.Researcher;
+import common.Skill;
 
 public class LoadDatabase {
 	public static void main(String[] args) {
@@ -38,6 +39,12 @@ public class LoadDatabase {
 			   entitymanager.persist(st);
 			}
 		   
+		   
+		   //Get Skill Entity
+		   Set<Skill> myset4 = GetSkillInfo.get();
+		   for (Skill st : myset4){
+			   entitymanager.persist(st);
+			}
 
 		   entitymanager.getTransaction( ).commit( );
 		   entitymanager.close( );
