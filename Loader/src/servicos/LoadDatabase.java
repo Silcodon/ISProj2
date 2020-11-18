@@ -3,50 +3,56 @@ package servicos;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-import java.util.Set;
-
-import common.Institution;
-import common.Research;
-import common.Researcher;
-
 
 public class LoadDatabase {
-	
-	private final static String name = "postgres";
-	private final static String password = "";
-	private final static String tablenameresearcher = "researcher";
-	private final static String tablenameinstitution = "institution";
-	private final static String tablenameresearch = "research";
-	private final static String url = "jdbc:postgresql://localhost/postgres";
-	
-	public static void main(String[] args) throws SQLException {
-		Researcher researcher;
-		Institution institution;
-		Research research;
-		
-		Connection conn = (Connection) DriverManager.getConnection (url , name , password );
-		Statement stmt = (Statement) conn.createStatement();
-		//Researchers
-		String sql = "CREATE TABLE IF NOT EXISTS " + tablenameresearcher + "(id SERIAL NOT NULL , Name VARCHAR(254), Introduction VARCHAR(20), PRIMARY KEY (id))";
-		stmt.executeUpdate(sql);
-		Set<Researcher> myset = GetResearcherInfo.get();
-		int rows = 0;
-		for (Researcher st : myset){
-			sql = "INSERT INTO " + tablenameresearcher + "(Name, Introduction)" + "VALUES" + "('" + st.getPersonName() + "','" + st.getIntroduction() + "')";
-			rows += stmt.executeUpdate(sql);
-		}
-		System.out .println("Added " + rows + " researchers.");
-		
-		//Institutions
-		
-		
-		
-		
-		//Researches
-	}
+	public static void main(String[] args) {
+		   
+		   EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Loader" );
+		   EntityManager entitymanager = emfactory.createEntityManager( );
+		   entitymanager.getTransaction( ).begin( );
+
+		   //Create Clas Entity
+		   Clas clas1 = new Clas(0, "1st", null);
+		   Clas clas2 = new Clas(0, "2nd", null);
+		   Clas clas3 = new Clas(0, "3rd", null);
+
+		   //Store Clas
+		   entitymanager.persist(clas1);
+		   entitymanager.persist(clas2);
+		   entitymanager.persist(clas3);
+
+		   //Create Clas Set1
+		   Set<Clas> classSet1 = new HashSet();
+		   classSet1.add(clas1);
+		   classSet1.add(clas2);
+		   classSet1.add(clas3);
+
+		   //Create Clas Set2
+		   Set<Clas> classSet2 = new HashSet();
+		   classSet2.add(clas3);
+		   classSet2.add(clas1);
+		   classSet2.add(clas2);
+
+		   //Create Clas Set3
+		   Set<Clas> classSet3 = new HashSet();
+		   classSet3.add(clas2);
+		   classSet3.add(clas3);
+		   classSet3.add(clas1);
+
+		   //Create Teacher Entity
+		   Teacher teacher1 = new Teacher(0, "Satish","Java",classSet1);
+		   Teacher teacher2 = new Teacher(0, "Krishna","Adv Java",classSet2);
+		   Teacher teacher3 = new Teacher(0, "Masthanvali","DB2",classSet3);
+
+		   //Store Teacher
+		   entitymanager.persist(teacher1);
+		   entitymanager.persist(teacher2);
+		   entitymanager.persist(teacher3);
+
+
+		   entitymanager.getTransaction( ).commit( );
+		   entitymanager.close( );
+		   emfactory.close( );
+		   }
+
 }
