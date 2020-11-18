@@ -21,6 +21,8 @@ public class LoadDatabaseSQL {
 	private final static String tablenameresearcher = "researcher";
 	private final static String tablenameinstitution = "institution";
 	private final static String tablenameresearch = "research";
+	private final static String tablenameresearcherinstitution = "researcher_institution";
+	private final static String tablenameresearcherresearch = "researcher_research";
 	private final static String url = "jdbc:postgresql://localhost/postgres";
 	
 	public static void main(String[] args) throws SQLException {
@@ -30,7 +32,7 @@ public class LoadDatabaseSQL {
 		//Researchers SQL
 		String sql = "CREATE TABLE IF NOT EXISTS " + tablenameresearcher + "(id SERIAL NOT NULL , Name VARCHAR(254), Introduction VARCHAR(500), PRIMARY KEY (id))";
 		stmt.executeUpdate(sql);
-		Set<Researcher> myset = GetResearcherInfo.get();
+		Set<Researcher> myset = GetResearcherInfo.getinfo();
 		int rows = 0;
 		for (Researcher st : myset){
 			sql = "INSERT INTO " + tablenameresearcher + "(Name, Introduction)" + "VALUES" + "('" + st.getPersonName() + "','" + st.getIntroduction() + "')";
@@ -38,10 +40,12 @@ public class LoadDatabaseSQL {
 		}
 		System.out .println("Added " + rows + " researchers.");
 		
+		
+		
 		//Institutions
 		sql = "CREATE TABLE IF NOT EXISTS " + tablenameinstitution + "(id SERIAL NOT NULL , Name VARCHAR(254), Location VARCHAR(254), Department VARCHAR(254), PRIMARY KEY (id))";
 		stmt.executeUpdate(sql);
-		Set<Institution> myset2 = GetInstitutionInfo.get();
+		Set<Institution> myset2 = GetInstitutionInfo.getinfo();
 		rows = 0;
 		for (Institution st : myset2){
 			sql = "INSERT INTO " + tablenameinstitution + "(Name, Location, Department)" + "VALUES" + "('" + st.getName() + "','" + st.getLocation() + "','" + st.getDepartment() + "')";
@@ -54,12 +58,26 @@ public class LoadDatabaseSQL {
 		//Researches
 		sql = "CREATE TABLE IF NOT EXISTS " + tablenameresearch + "(id SERIAL NOT NULL , Name VARCHAR(254), Type VARCHAR(254), Date VARCHAR(254), Description VARCHAR(500), PRIMARY KEY (id))";
 		stmt.executeUpdate(sql);
-		Set<Research> myset3 = GetResearchInfo.get();
+		Set<Research> myset3 = GetResearchInfo.getinfo();
 		rows = 0;
 		for (Research st : myset3){
 			sql = "INSERT INTO " + tablenameresearch + "(Name, Type, Date, Description)" + "VALUES" + "('" + st.getName() + "','" + st.getType() + "','" + st.getDate() + "','" + st.getDescription() + "')";
 			rows += stmt.executeUpdate(sql);
 		}
 		System.out .println("Added " + rows + " researches.");
+		
+		
+		/*
+		//Researcher_Institution
+		sql = "CREATE TABLE IF NOT EXISTS " + tablenameresearcherinstitution + "(id SERIAL NOT NULL , Name VARCHAR(254), Location VARCHAR(254), Department VARCHAR(254), PRIMARY KEY (id))";
+		stmt.executeUpdate(sql);
+		Set<Institution> myset2 = GetInstitutionInfo.getinfo();
+		rows = 0;
+		for (Institution st : myset2){
+			sql = "INSERT INTO " + tablenameinstitution + "(Name, Location, Department)" + "VALUES" + "('" + st.getName() + "','" + st.getLocation() + "','" + st.getDepartment() + "')";
+			rows += stmt.executeUpdate(sql);
+		}
+		System.out .println("Added " + rows + " institutions.");
+		*/
 	}
 }

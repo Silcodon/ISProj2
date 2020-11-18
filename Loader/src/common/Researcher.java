@@ -23,6 +23,9 @@ public class Researcher implements Serializable {
     private Set<Institution> institutions;
     @ManyToMany(targetEntity = Research.class)
     private Set<Research> researchs;
+    @ManyToMany(targetEntity = Skill.class)
+    private Set<Skill> skills;
+	
 	
 	
 	public Researcher(){}
@@ -76,6 +79,14 @@ public class Researcher implements Serializable {
 	    this.researchs = ResearchSet;
 	 }
 
+	public Set<Skill> getSkillSet() {
+	    return skills;
+	}
+	   
+	public void setSkillSet(Set<Skill> SkillSet) {
+	    this.skills = SkillSet;
+	 }
+	
     @Override
 	public String toString()
 	{
