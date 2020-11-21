@@ -15,15 +15,14 @@ public class Institution implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-   @GeneratedValue( strategy= GenerationType.AUTO ) 	
+   @GeneratedValue( strategy= GenerationType.IDENTITY ) 	
    
    private long id;
    private String name;
    private String location;
    private String department;
    
-   @OneToMany(targetEntity=Researcher.class)
-   
+   @OneToMany(targetEntity = Researcher.class)
    private Set<Researcher> researchers;
    
    public Institution() {
@@ -59,7 +58,9 @@ public class Institution implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	
+	public void addResearcher(Researcher x) {
+		this.researchers.add(x);
+	}
 	public Set<Researcher> getResearcherSet() {
 	      return researchers;
 	   }

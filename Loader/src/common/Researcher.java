@@ -21,8 +21,8 @@ public class Researcher implements Serializable {
 	private int reads;
 	private int citations;
     
-    @ManyToOne(targetEntity = Institution.class)
-    private Set<Institution> institutions;
+    @ManyToOne
+    private Institution institution;
     @ManyToMany(targetEntity = Publication.class)
     private Set<Publication> publications;
     @ManyToMany(targetEntity = Skill.class)
@@ -34,6 +34,7 @@ public class Researcher implements Serializable {
 	
 	public Researcher(String name, int reads, int citations)
 	{
+	
 		this.personName = name;
 		this.setReads(reads);
 		this.setCitations(citations);
@@ -56,15 +57,26 @@ public class Researcher implements Serializable {
     public void setPersonName(String value) {
         this.personName = value;
     }
-
-
-	
-	public Set<Institution> getInstitutionSet() {
-	    return institutions;
+	public int getCitations() {
+		return citations;
 	}
-	   
-	public void setInstitutionSet(Set<Institution> InstitutionSet) {
-	    this.institutions = InstitutionSet;
+
+	public void setCitations(int citations) {
+		this.citations = citations;
+	}
+
+	public int getReads() {
+		return reads;
+	}
+
+	public void setReads(int reads) {
+		this.reads = reads;
+	}
+	public 	Institution getInstitutionSet() {
+	    return institution;
+	}
+	public void setInstitutionSet(Institution Institution) {
+	    this.institution = Institution;
 	 }
 	
 	public Set<Publication> getResearchSet() {
@@ -83,22 +95,6 @@ public class Researcher implements Serializable {
 	    this.skills = SkillSet;
 	 }
 	
-
-	public int getCitations() {
-		return citations;
-	}
-
-	public void setCitations(int citations) {
-		this.citations = citations;
-	}
-
-	public int getReads() {
-		return reads;
-	}
-
-	public void setReads(int reads) {
-		this.reads = reads;
-	}
     @Override
 	public String toString()
 	{

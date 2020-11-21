@@ -1,0 +1,7 @@
+Institution InstName InstLoc InstiDep
+
+Publication pubName pubType date123
+
+Researcher ResName 3 2 
+
+Skill SkillName
