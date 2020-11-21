@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.Set;
 
 import common.Institution;
-import common.Research;
+import common.Publication;
 import common.Researcher;
 
 
@@ -35,7 +35,7 @@ public class LoadDatabaseSQL {
 		Set<Researcher> myset = GetResearcherInfo.getinfo();
 		int rows = 0;
 		for (Researcher st : myset){
-			sql = "INSERT INTO " + tablenameresearcher + "(Name, Introduction)" + "VALUES" + "('" + st.getPersonName() + "','" + st.getIntroduction() + "')";
+			sql = "INSERT INTO " + tablenameresearcher + "(Name, Introduction)" + "VALUES" + "('" + st.getPersonName() + "')";
 			rows += stmt.executeUpdate(sql);
 		}
 		System.out .println("Added " + rows + " researchers.");
@@ -58,10 +58,10 @@ public class LoadDatabaseSQL {
 		//Researches
 		sql = "CREATE TABLE IF NOT EXISTS " + tablenameresearch + "(id SERIAL NOT NULL , Name VARCHAR(254), Type VARCHAR(254), Date VARCHAR(254), Description VARCHAR(500), PRIMARY KEY (id))";
 		stmt.executeUpdate(sql);
-		Set<Research> myset3 = GetResearchInfo.getinfo();
+		Set<Publication> myset3 = GetPublicationInfo.getinfo();
 		rows = 0;
-		for (Research st : myset3){
-			sql = "INSERT INTO " + tablenameresearch + "(Name, Type, Date, Description)" + "VALUES" + "('" + st.getName() + "','" + st.getType() + "','" + st.getDate() + "','" + st.getDescription() + "')";
+		for (Publication st : myset3){
+			sql = "INSERT INTO " + tablenameresearch + "(Name, Type, Date, Description)" + "VALUES" + "('" + st.getName() + "','" + st.getType() + "','" + st.getDate() + "')";
 			rows += stmt.executeUpdate(sql);
 		}
 		System.out .println("Added " + rows + " researches.");

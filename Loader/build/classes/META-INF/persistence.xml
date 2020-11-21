@@ -7,7 +7,6 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org
 	<!-- With a standard configuration and hibernate, we don’t need to identify the Entity classes here -->
 	<!-- <class>common.Student</class> -->
 		<class>common.Institution</class>
-		<class>common.Research</class>
 		<class>common.Researcher</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />

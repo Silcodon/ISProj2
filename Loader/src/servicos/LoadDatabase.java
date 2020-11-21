@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import common.Institution;
-import common.Research;
+import common.Publication;
 import common.Researcher;
 import common.Skill;
 
@@ -26,9 +26,9 @@ public class LoadDatabase {
 		   }
 		   
 		   
-		   //Get Research Entity
-		   Set<Research> myset3 = GetResearchInfo.get();
-		   for (Research st : myset3){
+		   //Get Publication Entity
+		   Set<Publication> myset3 = GetPublicationInfo.get();
+		   for (Publication st : myset3){
 			   entitymanager.persist(st);
 		   }
 		   

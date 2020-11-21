@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity(name = "Researcher")
 @Table(name = "researcher")
@@ -17,12 +18,13 @@ public class Researcher implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private long id;
 	private String personName;
-    private String introduction;
+	private int reads;
+	private int citations;
     
-    @ManyToMany(targetEntity = Institution.class)
+    @ManyToOne(targetEntity = Institution.class)
     private Set<Institution> institutions;
-    @ManyToMany(targetEntity = Research.class)
-    private Set<Research> researchs;
+    @ManyToMany(targetEntity = Publication.class)
+    private Set<Publication> publications;
     @ManyToMany(targetEntity = Skill.class)
     private Set<Skill> skills;
 	
@@ -30,10 +32,11 @@ public class Researcher implements Serializable {
 	
 	public Researcher(){}
 	
-	public Researcher(String name, String intro)
+	public Researcher(String name, int reads, int citations)
 	{
 		this.personName = name;
-		this.introduction = intro;
+		this.setReads(reads);
+		this.setCitations(citations);
 	}
 	
 	public Long getId()
@@ -55,13 +58,6 @@ public class Researcher implements Serializable {
     }
 
 
-	public String getIntroduction() {
-		return introduction;
-	}
-
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
-	}
 	
 	public Set<Institution> getInstitutionSet() {
 	    return institutions;
@@ -71,12 +67,12 @@ public class Researcher implements Serializable {
 	    this.institutions = InstitutionSet;
 	 }
 	
-	public Set<Research> getResearchSet() {
-	    return researchs;
+	public Set<Publication> getResearchSet() {
+	    return publications;
 	}
 	   
-	public void setResearchSet(Set<Research> ResearchSet) {
-	    this.researchs = ResearchSet;
+	public void setResearchSet(Set<Publication> PublicationSet) {
+	    this.publications = PublicationSet;
 	 }
 
 	public Set<Skill> getSkillSet() {
@@ -87,10 +83,27 @@ public class Researcher implements Serializable {
 	    this.skills = SkillSet;
 	 }
 	
+
+	public int getCitations() {
+		return citations;
+	}
+
+	public void setCitations(int citations) {
+		this.citations = citations;
+	}
+
+	public int getReads() {
+		return reads;
+	}
+
+	public void setReads(int reads) {
+		this.reads = reads;
+	}
     @Override
 	public String toString()
 	{
-		return "Researcher " + id + ": " + personName + "\nAbout: " + introduction ;
+		return "Researcher " + id + ": " + personName + "\n";
 	}
+
 
 }

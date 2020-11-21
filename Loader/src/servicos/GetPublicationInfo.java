@@ -2,18 +2,18 @@ package servicos;
 
 import java.util.Set;
 
-import common.Research;
+import common.Publication;
 
-public class GetResearchInfo {
+public class GetPublicationInfo {
 
 	//Retornar objeto inteiro
-	public static Set<Research> get() {
+	public static Set<Publication> get() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	//Retornar info sem sets
-	public static Set<Research> getinfo() {
+	public static Set<Publication> getinfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
