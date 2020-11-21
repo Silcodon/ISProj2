@@ -91,17 +91,86 @@ public class LoadDatabase {
 		   inst3.addResearcher(res5);
 		   
 		   Publication pub1 = new Publication();
-		   pub1.setName("O estudo bom");
+		   pub1.setName("O estudo Volume II");
+		   pub1.setType("Book");
+		   pub1.setDate("November 2016");
+		   res1.addPublication(pub1);
 		   
+		   Publication pub2 = new Publication();
+		   pub2.setName("O futuro da tecnologia");
+		   pub2.setType("Conference Paper");
+		   pub2.setDate("May 2009");
+		   res3.addPublication(pub2);
+		   res4.addPublication(pub2);
+		   
+		   Publication pub3 = new Publication();
+		   pub3.setName("O passado da tecnologia");
+		   pub3.setType("Conference Paper");
+		   pub3.setDate("June 2019");
+		   res3.addPublication(pub3);
+		   res4.addPublication(pub3);
+		   
+		   Publication pub4 = new Publication();
+		   pub4.setName("Ice Age");
+		   pub4.setType("Article");
+		   pub4.setDate("November 2011");
+		   res2.addPublication(pub4);
+		   
+		   Publication pub5 = new Publication();
+		   pub5.setName("Hibernate para totós");
+		   pub5.setType("Book");
+		   pub5.setDate("January 2011");
+		   res5.addPublication(pub5);
+		   
+
+		   Skill skill1 = new Skill();
+		   skill1.setNome("Psychology"); 
+		   
+		   Skill skill2 = new Skill();
+		   skill2.setNome("Technology");
+		   
+		   Skill skill3 = new Skill();
+		   skill3.setNome("Java Programming");
+		   
+		   Skill skill4 = new Skill();
+		   skill4.setNome("Geology");
+		   
+		   Skill skill5 = new Skill();
+		   skill5.setNome("Sociology");
+		   
+		   
+		   res1.addSkill(skill1);
+		   res2.addSkill(skill4);
+		   res2.addSkill(skill2);
+		   res3.addSkill(skill5);
+		   res3.addSkill(skill2);
+		   res4.addSkill(skill5);
+		   res4.addSkill(skill2);
+		   res5.addSkill(skill3);
+		   res5.addSkill(skill2);
 		   
 		   myset2.add(inst1);
 		   myset2.add(inst2);
 		   myset2.add(inst3);
+		   
 		   myset.add(res1);
 		   myset.add(res2);
 		   myset.add(res3);
 		   myset.add(res4);
 		   myset.add(res5);
+		   
+		   myset3.add(pub1);
+		   myset3.add(pub2);
+		   myset3.add(pub3);
+		   myset3.add(pub4);
+		   myset3.add(pub5);
+		   
+		   
+		   myset4.add(skill1);
+		   myset4.add(skill2);
+		   myset4.add(skill3);
+		   myset4.add(skill4);
+		   myset4.add(skill5);
 		   
 		   if(myset2 != null) {
 			   

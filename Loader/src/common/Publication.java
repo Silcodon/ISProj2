@@ -21,9 +21,6 @@ public class Publication implements Serializable{
 	private String type;
    	private String date;
 
-   	@ManyToMany(targetEntity=Researcher.class)
-   	private Set<Researcher> researchers;
-   	
    	public Publication() {
    		
    	}
@@ -60,13 +57,5 @@ public class Publication implements Serializable{
 	}
 
 	
-	public Set<Researcher> getResearcherSet() {
-	      return researchers;
-	   }
-	   
-	   public void setResearcherSet(Set<Researcher> ResearcherSet) {
-	      this.researchers = ResearcherSet;
-	   }
-
-
+	
 }

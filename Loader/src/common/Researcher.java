@@ -1,5 +1,6 @@
 package common;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -24,9 +25,9 @@ public class Researcher implements Serializable {
     @ManyToOne
     private Institution institution;
     @ManyToMany(targetEntity = Publication.class)
-    private Set<Publication> publications;
+    private Set<Publication> publications = new HashSet<Publication>();
     @ManyToMany(targetEntity = Skill.class)
-    private Set<Skill> skills;
+    private Set<Skill> skills = new HashSet<Skill>();
 	
 	
 	
@@ -82,15 +83,20 @@ public class Researcher implements Serializable {
 	public Set<Publication> getResearchSet() {
 	    return publications;
 	}
-	   
-	public void setResearchSet(Set<Publication> PublicationSet) {
+	public void addPublication(Publication pub) {
+		this.publications.add(pub);
+	}
+	public void setPublicationSet(Set<Publication> PublicationSet) {
 	    this.publications = PublicationSet;
 	 }
+	
 
 	public Set<Skill> getSkillSet() {
 	    return skills;
 	}
-	   
+	public void addSkill(Skill skill) {
+		this.skills.add(skill);
+	}
 	public void setSkillSet(Set<Skill> SkillSet) {
 	    this.skills = SkillSet;
 	 }

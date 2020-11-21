@@ -22,8 +22,7 @@ public class Skill implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private long id;
 	private String nome;
-	@ManyToMany(targetEntity = Researcher.class)
-    private Set<Researcher> researchers;
+
 	
 	
 	public Skill() {

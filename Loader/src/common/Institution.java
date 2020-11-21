@@ -1,5 +1,6 @@
 package common;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -23,7 +24,7 @@ public class Institution implements Serializable{
    private String department;
    
    @OneToMany(targetEntity = Researcher.class)
-   private Set<Researcher> researchers;
+   private Set<Researcher> researchers = new HashSet<Researcher>();
    
    public Institution() {
 	   
