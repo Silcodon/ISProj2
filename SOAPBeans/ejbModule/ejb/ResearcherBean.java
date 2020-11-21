@@ -4,12 +4,11 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import common.Researcher;
 
 /**
@@ -17,7 +16,8 @@ import common.Researcher;
  */
 @Stateless
 @LocalBean
-public class ResearcherBean implements ResearcherBeanRemote, ResearcherBeanLocal {
+@WebService
+public class ResearcherBean implements ResearcherBeanLocal,ResearcherBeanRemote {
 
 	@PersistenceContext(name = "Loader")
 	private EntityManager em;
@@ -29,6 +29,7 @@ public class ResearcherBean implements ResearcherBeanRemote, ResearcherBeanLocal
     }
 
     @Override
+    @WebMethod
     public List<Researcher> Getall(){
     	// Define query String
     	String jpql = "SELECT r FROM researcher r";
@@ -39,7 +40,8 @@ public class ResearcherBean implements ResearcherBeanRemote, ResearcherBeanLocal
     	return mylist;
     }
     
-	@Override
+    @Override
+	@WebMethod
     public List<Researcher> GetResearcherByNome(String nome){
 		// Define query String
 		String jpql = "SELECT r FROM researcher r where r.personName=:name";
@@ -52,10 +54,11 @@ public class ResearcherBean implements ResearcherBeanRemote, ResearcherBeanLocal
 		return mylist;
     }
 	
-	@Override
+    @Override
+	@WebMethod
     public List<Researcher> GetResearcherBySkill(String nome){
 		// Define query String
-		String jpql = "SELECT r FROM researcher r inner join researcher.skill s where s.id=:(SELECT s2.id FROM skill s2 where s2.nome=:name)";
+		String jpql = "SELECT r FROM researcher r inner join researcher_skill s where s.id=:(SELECT s2.id FROM skill s2 where s2.nome=:name)";
 		// Create a (typed) query
 		TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
 		// Set parameter
