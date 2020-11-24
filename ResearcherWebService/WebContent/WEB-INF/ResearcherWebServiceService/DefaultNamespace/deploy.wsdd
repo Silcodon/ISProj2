@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ResearcherWebServiceService WSDL service -->
+
+  <service name="ResearcherWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://DefaultNamespace"/>
+      <parameter name="wsdlServiceElement" value="ResearcherWebServiceService"/>
+      <parameter name="schemaQualified" value="http://DefaultNamespace"/>
+      <parameter name="wsdlServicePort" value="ResearcherWebService"/>
+      <parameter name="className" value="ResearcherWebService"/>
+      <parameter name="wsdlPortType" value="ResearcherWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://DefaultNamespace" xmlns:tns="http://DefaultNamespace" name="getall" qname="operNS:Getall" returnQName="retNS:GetallReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://DefaultNamespace" xmlns:tns="http://DefaultNamespace" name="getResearcherByNome" qname="operNS:GetResearcherByNome" returnQName="retNS:GetResearcherByNomeReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+        <parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" xmlns:pns="http://DefaultNamespace" qname="pns:nome" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://DefaultNamespace" xmlns:tns="http://DefaultNamespace" name="getResearcherBySkill" qname="operNS:GetResearcherBySkill" returnQName="retNS:GetResearcherBySkillReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+        <parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" xmlns:pns="http://DefaultNamespace" qname="pns:nome" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getResearcherBySkill getall getResearcherByNome"/>
+
+      <typeMapping xmlns:ns="http://DefaultNamespace" qname="ns:&gt;Getall" type="java:DefaultNamespace.Getall" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DefaultNamespace" qname="ns:&gt;GetResearcherByNomeResponse" type="java:DefaultNamespace.GetResearcherByNomeResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DefaultNamespace" qname="ns:&gt;GetResearcherBySkill" type="java:DefaultNamespace.GetResearcherBySkill" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DefaultNamespace" qname="ns:&gt;GetResearcherBySkillResponse" type="java:DefaultNamespace.GetResearcherBySkillResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DefaultNamespace" qname="ns:&gt;GetallResponse" type="java:DefaultNamespace.GetallResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DefaultNamespace" qname="ns:&gt;GetResearcherByNome" type="java:DefaultNamespace.GetResearcherByNome" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://DefaultNamespace" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+  </service>
+</deployment>

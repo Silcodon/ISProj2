@@ -14,5 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="src" path="/ResearcherBeans"/>
+	<classpathentry kind="lib" path="D:/trabalhos-FCTUC-DEI/---------/z__mei/IS/wildfly-18.0.1.Final/modules/system/layers/base/javax/inject/api/main/jakarta.inject-api-1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
