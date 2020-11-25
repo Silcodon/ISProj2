@@ -2,7 +2,5 @@
     <wb-module deploy-name="ResearcherBeans">
         <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
         <property name="java-output-path" value="/ResearcherBeans/build/classes"/>
-        <property name="ClientProject" value="ResearcherBeansClient"/>
-        <property name="ClientJARURI" value="ResearcherBeansClient.jar"/>
     </wb-module>
 </project-modules>

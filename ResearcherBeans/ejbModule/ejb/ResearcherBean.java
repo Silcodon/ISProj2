@@ -4,10 +4,11 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
 import common.Researcher;
 
 /**
@@ -15,8 +16,7 @@ import common.Researcher;
  */
 @Stateless
 @LocalBean
-@WebService
-public class ResearcherBean implements ResearcherBeanLocal,ResearcherBeanRemote {
+public class ResearcherBean implements ResearcherBeanLocal, ResearcherBeanRemote {
 
 	@PersistenceContext(name = "Loader")
 	private EntityManager em;
@@ -30,18 +30,17 @@ public class ResearcherBean implements ResearcherBeanLocal,ResearcherBeanRemote 
     @Override
     public List<Researcher> Getall(){
     	// Define query String
-    	String jpql = "SELECT r FROM researcher r";
+    	String jpql = "SELECT r FROM Researcher r";
     	// Create a (typed) query
     	TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
     	// Query and get result
     	List<Researcher> mylist = typedQuery.getResultList();
     	return mylist;
     }
-    
     @Override
     public List<Researcher> GetResearcherByNome(String nome){
 		// Define query String
-		String jpql = "SELECT r FROM researcher r where r.personName=:name";
+		String jpql = "SELECT r FROM Researcher r where r.personName=:name";
 		// Create a (typed) query
 		TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
 		// Set parameter
@@ -50,11 +49,10 @@ public class ResearcherBean implements ResearcherBeanLocal,ResearcherBeanRemote 
 		List<Researcher> mylist = typedQuery.getResultList();
 		return mylist;
     }
-	
-    @Override
+	@Override
     public List<Researcher> GetResearcherBySkill(String nome){
 		// Define query String
-		String jpql = "SELECT r FROM researcher r inner join researcher_skill s where s.id=:(SELECT s2.id FROM skill s2 where s2.nome=:name)";
+		String jpql = "SELECT r FROM Researcher r inner join Researcher_skill s where s.id=:(SELECT s2.id FROM Skill s2 where s2.nome=:name)";
 		// Create a (typed) query
 		TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
 		// Set parameter

@@ -1,12 +1,9 @@
 package common;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 import javax.persistence.*;
 
 
@@ -19,15 +16,15 @@ public class Institution implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-   @GeneratedValue( strategy= GenerationType.AUTO ) 	
+   @GeneratedValue( strategy= GenerationType.IDENTITY ) 	
    
    private long id;
    private String name;
    private String location;
    private String department;
    
-   @ManyToMany(targetEntity=Institution.class)
-   private Set<Researcher> researchers;
+   @OneToMany(targetEntity = Researcher.class,fetch=FetchType.EAGER)
+   private Set<Researcher> researchers = new HashSet<Researcher>();
    
    public Institution() {
 	   
@@ -62,7 +59,9 @@ public class Institution implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	
+	public void addResearcher(Researcher x) {
+		this.researchers.add(x);
+	}
 	public Set<Researcher> getResearcherSet() {
 	      return researchers;
 	   }
