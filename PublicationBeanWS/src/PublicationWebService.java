@@ -44,7 +44,7 @@ public class PublicationWebService implements PublicationWebServiceImpl{
 		try {
 			
 			context=new InitialContext(jndiProperties);
-			PublicationBeanRemote ejb = (PublicationBeanRemote) context.lookup("PublicationBeanEAR/PublicationBeans/PublicationBean!ejb.PublicationBeanRemote");
+			PublicationBeanRemote ejb = (PublicationBeanRemote) context.lookup("PublicationEAR/PublicationBeans/PublicationBean!ejb.PublicationBeanRemote");
 			
 	    	 mylist = ejb.Getall();
 	    	
@@ -74,7 +74,7 @@ public class PublicationWebService implements PublicationWebServiceImpl{
 		
 		try {
 			context=new InitialContext(jndiProperties);
-			PublicationBeanRemote ejb = (PublicationBeanRemote) context.lookup("PublicationBeanEAR/PublicationBeans/PublicationBean!ejb.PublicationBeanRemote");
+			PublicationBeanRemote ejb = (PublicationBeanRemote) context.lookup("PublicationEAR/PublicationBeans/PublicationBean!ejb.PublicationBeanRemote");
 			
 			mylist = ejb.GetPublicationByNome(nome);
 		}catch (NamingException e) {
@@ -102,7 +102,7 @@ public class PublicationWebService implements PublicationWebServiceImpl{
 		
 		try {
 			context=new InitialContext(jndiProperties);
-			PublicationBeanRemote ejb = (PublicationBeanRemote) context.lookup("PublicationBeanEAR/PublicationBeans/PublicationBean!ejb.PublicationBeanRemote");
+			PublicationBeanRemote ejb = (PublicationBeanRemote) context.lookup("PublicationEAR/PublicationBeans/PublicationBean!ejb.PublicationBeanRemote");
 			mylist = ejb.GetPublicationByResearcher(nome);
 		}catch (NamingException e) {
 

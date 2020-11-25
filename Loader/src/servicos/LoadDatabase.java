@@ -90,6 +90,7 @@ public class LoadDatabase {
 		   pub1.setType("Book");
 		   pub1.setDate("November 2016");
 		   res1.addPublication(pub1);
+		   res5.addPublication(pub1);
 		   
 		   Publication pub2 = new Publication();
 		   pub2.setName("O futuro da tecnologia");
@@ -110,14 +111,66 @@ public class LoadDatabase {
 		   pub4.setType("Article");
 		   pub4.setDate("November 2011");
 		   res2.addPublication(pub4);
+		   res1.addPublication(pub4);
 		   
 		   Publication pub5 = new Publication();
 		   pub5.setName("Hibernate para totós");
 		   pub5.setType("Book");
 		   pub5.setDate("January 2011");
 		   res5.addPublication(pub5);
+		   res2.addPublication(pub5);
 		   
-
+		   Publication pub6 = new Publication();
+		   pub6.setName("JPA para totós");
+		   pub6.setType("Book");
+		   pub6.setDate("May 2013");
+		   res1.addPublication(pub6);
+		   res2.addPublication(pub6);
+		   
+		   Publication pub7 = new Publication();
+		   pub7.setName("JavaBeans para totós");
+		   pub7.setType("Book");
+		   pub7.setDate("January 2015");
+		   res1.addPublication(pub7);
+		   res3.addPublication(pub7);
+		   
+		   Publication pub8 = new Publication();
+		   pub8.setName("WebServices para totós");
+		   pub8.setType("Book");
+		   pub8.setDate("February 2013");
+		   res1.addPublication(pub8);
+		   res4.addPublication(pub8);
+		   
+		   Publication pub9 = new Publication();
+		   pub9.setName("REST para totós");
+		   pub9.setType("Book");
+		   pub9.setDate("January 2012");
+		   res2.addPublication(pub9);
+		   res3.addPublication(pub9);
+		   res5.addPublication(pub9);
+		   
+		   Publication pub10 = new Publication();
+		   pub10.setName("JMS para totós");
+		   pub10.setType("Book");
+		   pub10.setDate("March 2014");
+		   res2.addPublication(pub10);
+		   res4.addPublication(pub10);
+		   
+		   Publication pub11 = new Publication();
+		   pub11.setName("CDI para totós");
+		   pub11.setType("Book");
+		   pub11.setDate("December 2018");
+		   res3.addPublication(pub11);
+		   res5.addPublication(pub11);
+		   
+		   Publication pub12 = new Publication();
+		   pub12.setName("XML para totós");
+		   pub12.setType("Book");
+		   pub12.setDate("June 2019");
+		   res4.addPublication(pub12);
+		   res5.addPublication(pub12);
+		   
+		   
 		   Skill skill1 = new Skill();
 		   skill1.setNome("Psychology"); 
 		   
@@ -159,6 +212,13 @@ public class LoadDatabase {
 		   myset3.add(pub3);
 		   myset3.add(pub4);
 		   myset3.add(pub5);
+		   myset3.add(pub6);
+		   myset3.add(pub7);
+		   myset3.add(pub8);
+		   myset3.add(pub9);
+		   myset3.add(pub10);
+		   myset3.add(pub11);
+		   myset3.add(pub12);
 		   
 		   
 		   myset4.add(skill1);

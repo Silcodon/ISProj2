@@ -52,7 +52,7 @@ public class ResearcherBean implements ResearcherBeanLocal, ResearcherBeanRemote
 	@Override
     public List<Researcher> GetResearcherBySkill(String nome){
 		// Define query String
-		String jpql = "SELECT r FROM Researcher r inner join Researcher_skill s where s.id=:(SELECT s2.id FROM Skill s2 where s2.nome=:name)";
+		String jpql = "SELECT r FROM Researcher r inner join r.skills s where s.id=(SELECT s2.id FROM Skill s2 where s2.nome=:name)";
 		// Create a (typed) query
 		TypedQuery<Researcher> typedQuery = em.createQuery(jpql, Researcher.class);
 		// Set parameter

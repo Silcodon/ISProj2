@@ -58,7 +58,7 @@ public class PublicationBean implements PublicationBeanRemote, PublicationBeanLo
 	@Override
     public List<Publication> GetPublicationByResearcher(String nome){
 		// Define query String
-		String jpql = "SELECT r FROM Publication r inner join Researcher_publication s where s.id=:(SELECT s2.id FROM Researcher s2 where s2.nome=:name)";
+		String jpql = "SELECT p FROM Publication p, Researcher r join r.publications rp where r.personName=:name and rp.id=p.id";
 		// Create a (typed) query
 		TypedQuery<Publication> typedQuery = em.createQuery(jpql, Publication.class);
 		// Set parameter
