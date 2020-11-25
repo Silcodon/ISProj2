@@ -23,8 +23,6 @@ public class Institution implements Serializable{
    private String location;
    private String department;
    
-   @OneToMany(targetEntity = Researcher.class,fetch=FetchType.EAGER)
-   private Set<Researcher> researchers = new HashSet<Researcher>();
    
    public Institution() {
 	   
@@ -59,16 +57,6 @@ public class Institution implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	public void addResearcher(Researcher x) {
-		this.researchers.add(x);
-	}
-	public Set<Researcher> getResearcherSet() {
-	      return researchers;
-	   }
-	   
-	   public void setResearcherSet(Set<Researcher> ResearcherSet) {
-	      this.researchers = ResearcherSet;
-	   }
 
    
 }

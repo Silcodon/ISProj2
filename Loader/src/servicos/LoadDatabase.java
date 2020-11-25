@@ -57,7 +57,6 @@ public class LoadDatabase {
 		   res1.setCitations(3);
 		   
 		   res1.setInstitutionSet(inst1);
-		   inst1.addResearcher(res1);
 		   
 		   
 		   
@@ -66,7 +65,6 @@ public class LoadDatabase {
 		   res2.setReads(4);
 		   res2.setCitations(1);
 		   res2.setInstitutionSet(inst1);
-		   inst1.addResearcher(res2);
 		   
 		   Researcher res3  = new Researcher();
 		   res3.setPersonName("Joaquim Garcia");
@@ -74,21 +72,18 @@ public class LoadDatabase {
 		   res3.setCitations(6);
 		   
 		   res3.setInstitutionSet(inst2);
-		   inst2.addResearcher(res3);
 		   
 		   Researcher res4  = new Researcher();
 		   res4.setPersonName("Antonio Ribeiro");
 		   res4.setReads(1);
 		   res4.setCitations(3);
 		   res4.setInstitutionSet(inst2);
-		   inst2.addResearcher(res4);
 		   
 		   Researcher res5  = new Researcher();
 		   res5.setPersonName("Nuno Lopes");
 		   res5.setReads(3);
 		   res5.setCitations(2);
 		   res5.setInstitutionSet(inst3);
-		   inst3.addResearcher(res5);
 		   
 		   Publication pub1 = new Publication();
 		   pub1.setName("O estudo Volume II");
