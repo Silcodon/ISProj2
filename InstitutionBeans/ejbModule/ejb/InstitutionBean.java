@@ -33,7 +33,7 @@ public class InstitutionBean implements InstitutionBeanRemote, InstitutionBeanLo
     @Override
     public List<Institution> Getall(){
     	// Define query String
-    	String jpql = "SELECT r FROM Publication r";
+    	String jpql = "SELECT r FROM Institution r";
     	// Create a (typed) query
     	TypedQuery<Institution> typedQuery = em.createQuery(jpql, Institution.class);
     	// Query and get result

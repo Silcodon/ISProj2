@@ -2,6 +2,7 @@
 import java.util.List;
 import java.util.Properties;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,14 +18,27 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import common.Institution;
+import ejb.InstitutionBean;
 import ejb.InstitutionBeanRemote;
 
-@Path("/Institution")
-@RequestScoped
+
+@Path("/InstitutionWebService")
 public class InstitutionWebService {
 	
+	@GET
+	@Path("/teste")
+	@Produces(MediaType.APPLICATION_JSON )
+	public Institution teste() {
+		Institution person = new Institution();
+		person.setName("Universidade");
+		person.setLocation("Coimbra");
+		person.setDepartment("Departamento de Informatica");
+		return person;
+	}
+	
+	
+	@GET
 	@Path("/getall")
-	@RequestScoped
 	@Produces(MediaType.APPLICATION_JSON )
 	public List<Institution> Getall() {
 		List<Institution> mylist = null;
@@ -59,7 +73,6 @@ public class InstitutionWebService {
 	
 	@GET
 	@Path("/getbyname")
-	@RequestScoped
 	@Produces(MediaType.APPLICATION_JSON )
 	public List<Institution> GetInstitutionByName(@QueryParam("name") String value) {
 		List<Institution> mylist = null;
@@ -94,7 +107,6 @@ public class InstitutionWebService {
 	
 	@GET
 	@Path("/getbyresearcher")
-	@RequestScoped
 	@Produces(MediaType.APPLICATION_JSON )
 	public List<Institution> GetInstitutionByResearcher(@QueryParam("name") String value) {
 		List<Institution> mylist = null;
