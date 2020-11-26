@@ -8,6 +8,9 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import org.junit.Test;
@@ -15,7 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import javax.xml.soap.*;
 
-
+import common.Publication;
 import common.Researcher;
 
 public class Main {
@@ -42,9 +45,45 @@ public class Main {
 			
 			
 			//PUBLICATIONS
-			if(option==1) {
-				String soapEndpointUrl = "http://localhost:8080/ResearcherBeanWS/ResearcherWebService";
+			if(option==1) {	
+				boolean done_pub  = false;
+				while(!done_pub) {
+					String soapEndpointUrl = "http://localhost:8080/PublicationBeanWS/PublicationWebService";
+			        String soapAction = "";
+					System.out.println("****************SOAP WS****************");
+					System.out.println("Pesquisa uma publicacao por: ");
+					System.out.println("(0) Todas ");
+					System.out.println("(1) Nome ");
+					System.out.println("(2) Researcher ");
+					System.out.println("(3) Exit ");
+					System.out.println("\n");
 
+					int option_pub = lerInt(0, 4);
+					//TODAS AS PUBS
+					if(option_pub==0) {
+				        String method = "Getall";
+				        String param = "";
+				        callSoapWebService(soapEndpointUrl, soapAction, method,param);
+					}
+					//PUBS POR NOME
+					if(option_pub==1) {
+						System.out.print("Introduza o nome da publicacao: ");
+						String param = scan.nextLine();
+						String method = "GetPublicationByNome";
+				        callSoapWebService(soapEndpointUrl, soapAction, method,param);
+					}
+					//PUBS POR RESEARCHER
+					if(option_pub==2) {
+						System.out.print("Introduza o nome do researcher: ");
+						String param = scan.nextLine();
+						String method = "GetPublicationByResearcher";
+				        callSoapWebService(soapEndpointUrl, soapAction, method,param);
+					}
+					//SAIR
+					if(option_pub==3) {
+						done_pub=true;
+					}
+				}
 			}
 			
 			
@@ -219,7 +258,73 @@ public class Main {
 	
 	
 	//=========================================AUX SOAP WS===============================================================================
-	
+	private static void createSoapEnvelope(SOAPMessage soapMessage, String method, String param) throws SOAPException {
+        SOAPPart soapPart = soapMessage.getSOAPPart();
+
+        String myNamespace = "unk";
+        String myNamespaceURI = "http://unknown.namespace/";
+
+        // SOAP Envelope
+        SOAPEnvelope envelope = soapPart.getEnvelope();
+        envelope.addNamespaceDeclaration(myNamespace, myNamespaceURI);
+
+            /*
+            Constructed SOAP Request Message:
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:unk="http://unknown.namespace/">
+		   		<soapenv:Header/>
+		   			<soapenv:Body>
+		      			<unk:Getall/>
+		   			</soapenv:Body>
+			</soapenv:Envelope>
+            */
+
+        // SOAP Body
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement soapBodyElem = soapBody.addChildElement(method, myNamespace);
+        if(method.equals("Getall")==false) {
+        	SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("arg0");
+            soapBodyElem1.addTextNode(param);
+        }
+    }
+
+    private static void callSoapWebService(String soapEndpointUrl, String soapAction, String method, String param) {
+        try {
+            // Create SOAP Connection
+            SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+            SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+
+            // Send SOAP Message to SOAP Server
+            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(soapAction,method,param), soapEndpointUrl);
+            // Print the SOAP Response
+            System.out.println("Response SOAP Message:");
+            soapResponse.writeTo(System.out);
+            System.out.println();
+
+            soapConnection.close();
+        } catch (Exception e) {
+            System.err.println("\nError occurred while sending SOAP Request to Server!\nMake sure you have the correct endpoint URL and SOAPAction!\n");
+            e.printStackTrace();
+        }
+    }
+
+    private static SOAPMessage createSOAPRequest(String soapAction,String method,String param) throws Exception {
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
+
+        createSoapEnvelope(soapMessage,method,param);
+
+        MimeHeaders headers = soapMessage.getMimeHeaders();
+        headers.addHeader("SOAPAction", soapAction);
+
+        soapMessage.saveChanges();
+
+        /* Print the request message, just for debugging purposes */
+        System.out.println("Request SOAP Message:");
+        soapMessage.writeTo(System.out);
+        System.out.println("\n");
+
+        return soapMessage;
+    }
 	
 
 }

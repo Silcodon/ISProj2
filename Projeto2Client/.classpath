@@ -122,5 +122,9 @@
 	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/yasson-1.0.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/jboss-jaxrs-api_2.1_spec-2.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/json-20201115.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/mimepull-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/saaj-api-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/eclipse-workspace/Projeto2Client/lib/saaj-impl-1.3.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
